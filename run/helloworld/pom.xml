@@ -88,6 +88,11 @@ limitations under the License.
           <to>
             <image>registry:5000/jib/helloworld</image>
           </to>
+          <container>
+            <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+            <user>1001</user>
+            <entrypoint>INHERIT</entrypoint>
+          </container>
         </configuration>
       </plugin>
       <!-- [END run_helloworld_jib] -->
