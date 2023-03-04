@@ -82,8 +82,11 @@ limitations under the License.
         <artifactId>jib-maven-plugin</artifactId>
         <version>3.3.1</version>
         <configuration>
+          <from>
+            <image>registry.access.redhat.com/ubi8/openjdk-17-runtime</image>
+          </from>
           <to>
-            <image>gcr.io/PROJECT_ID/helloworld</image>
+            <image>registry:5000/jib/helloworld</image>
           </to>
         </configuration>
       </plugin>
