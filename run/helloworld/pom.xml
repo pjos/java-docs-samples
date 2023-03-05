@@ -83,15 +83,24 @@ limitations under the License.
         <version>3.3.1</version>
         <configuration>
           <from>
-            <image>registry.access.redhat.com/ubi8/openjdk-17-runtime</image>
+            <!-- https://catalog.redhat.com/software/containers/ubi8/openjdk-17-runtime/618bdc5f843af1624c4e4ba8 -->
+            <!-- export IMAGE_DIGEST="@$(skopeo inspect docker://registry.access.redhat.com/ubi8/openjdk-17-runtime:latest |jq -r .Digest)" -->
+            <image>registry.access.redhat.com/ubi8/openjdk-17-runtime@${env.IMAGE_DIGEST}</image>
           </from>
           <to>
             <image>registry:5000/jib/helloworld</image>
           </to>
           <container>
             <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
-            <user>1001</user>
             <entrypoint>INHERIT</entrypoint>
+            <appRoot>/deployments</appRoot>
+            <environment>
+              <JAVA_CLASSPATH>@/deployments/jib-classpath-file</JAVA_CLASSPATH>
+              <JAVA_MAIN_CLASS>@/deployments/jib-main-class-file</JAVA_MAIN_CLASS>
+            </environment>
+            <labels>
+              <base-image-ref>registry.access.redhat.com/ubi8/openjdk-17-runtime@${env.IMAGE_DIGEST}</base-image-ref>
+            </labels>
           </container>
         </configuration>
       </plugin>
